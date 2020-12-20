@@ -1,0 +1,29 @@
+{
+    data_dir: 'data/quora',
+    output_dir: 'quora',
+    metric: 'acc',
+
+    model: {
+        enc_layers: 2,
+        blocks: 2,
+        prediction: 'symmetric',
+        hidden_size: 50,
+        max_len: 80,
+    },
+
+    routine: {
+        eval_per_samples: 400,          // warmup阶段之后每次eval的sample个数
+        eval_warmup_samples: 0,      // warmup的sample数量
+        eval_per_samples_warmup: 0,   // warmup阶段每次eval的sample个数
+        min_samples: 5120000,           // 最小sample数量
+        tolerance_samples: 2560000,     // 最大sample数量
+    },
+
+    optim: {
+        lr: 0.0012,
+        min_lr: 6e-5,
+        lr_decay_samples: 256000,
+        batch_size: 16,
+        lr_warmup_samples: 0,   // warmup的sample数量
+    },
+}
